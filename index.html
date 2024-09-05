@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Portfolio</title>
+    <style>
+        /* Genel Stil Ayarları */
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0b0e14;
+            color: #fff;
+        }
+
+        header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: transparent;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        /* Yandan Açılır Menü */
+        nav {
+            position: fixed;
+            right: -250px;
+            top: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #1a1e27;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: right 0.3s ease;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 20px 0;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #6c5dd3;
+        }
+
+        /* Menü butonu */
+        .menu-btn {
+            cursor: pointer;
+            font-size: 24px;
+            color: #fff;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            z-index: 101;
+        }
+
+        .menu-active {
+            right: 0;
+        }
+
+        /* Ana İçerik */
+        .main-content {
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .main-content h1 {
+            font-size: 48px;
+            color: #9e74f1;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .main-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            animation: fadeInDown 1.2s ease;
+        }
+
+        .main-content p {
+            font-size: 18px;
+            color: #9da5b0;
+            margin-bottom: 30px;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        .main-content .download-cv {
+            background-color: #6c5dd3;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            animation: fadeInDown 1.7s ease;
+        }
+
+        .main-content .download-cv:hover {
+            background-color: #5a49b9;
+        }
+
+        /* Profil alanı */
+        .profile-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-top: 50px;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #3d4451;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .circle {
+            position: absolute;
+            top: 70%;
+            left: -120px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(110,75,237,1) 0%, rgba(75,130,235,1) 100%);
+            opacity: 0.3;
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+
+        .small-circle {
+            position: absolute;
+            top: 85%;
+            left: -170px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(75,130,235,1) 0%, rgba(110,75,237,1) 100%);
+            opacity: 0.4;
+            z-index: -2;
+            animation: pulse 3s infinite;
+        }
+
+        /* Sosyal medya ikonları */
+        .social-icons {
+            margin-top: 50px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .social-icons a:hover {
+            color: #6c5dd3;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1e27;
+            padding: 50px 20px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            margin-top: 50px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Daire animasyonu */
+        @keyframes scale {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.5;
+            }
+        }
+
+        /* Fade In Animasyonları */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobil Ekranlar İçin Ayarlar */
+        @media (max-width: 768px) {
+            .main-content h1 {
+                font-size: 36px;
+            }
+
+            .main-content h2 {
+                font-size: 28px;
+            }
+
+            .circle {
+                width: 200px;
+                height: 200px;
+                top: 80%;
+                left: -100px;
+            }
+
+            .small-circle {
+                width: 80px;
+                height: 80px;
+                left: -140px;
+            }
+
+            footer {
+                padding: 30px 20px;
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Portföy </h1>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</header>
+
+<nav id="sideMenu">
+    <ul>
+        <li><a href="#">Projeler</a></li>
+        <li><a href="#">Teknolojiler</a></li>
+        <li><a href="#">Hakkımda</a></li>
+    </ul>
+</nav>
+
+<div class="main-content">
+    <h1>Merhaba , Ben Adil</h1>
+    <h2>Frontend & Mobil Geliştirici</h2>
+    <p>Web ve mobil tasarımda yenilikçi çözümler sunarak markanızı dijital dünyada en iyi şekilde temsil ediyorum. Kullanıcı dostu arayüzler ve etkileyici tasarımlar ile projelerinizi hayata geçiriyorum.</p>
+    <a href="#" class="download-cv">CV indir</a>
+
+    <div class="profile-wrapper">
+        <img src="img/profile.jpg" alt="Profile Picture" class="profile-picture">
+        <div class="circle"></div>
+        <div class="small-circle"></div>
+    </div>
+
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>© 2024 Adil Oğuz. Bütün Hakları Saklıdır.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('sideMenu');
+        menu.classList.toggle('menu-active');
+    }
+</script>
+
+</body>
+</html>
